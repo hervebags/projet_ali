@@ -29,26 +29,28 @@ food_resource = FoodResource.CanadienFoodFileResource()
 foodIndexer = FoodIndexer.FoodIndexer()
 
 if __name__ == "__main__":
-    elastic_client = Elasticsearch(hosts=[elastic_domain.domain_address])
+    #  elastic_client = Elasticsearch(hosts=[elastic_domain.domain_address])
 
     # Test health
-    r = elastic_client.cluster.health(wait_for_status='yellow', request_timeout=1)
-    print(f"Status of '{r['cluster_name']}': {r['status']}")
+    #  r = elastic_client.cluster.health(wait_for_status='yellow', request_timeout=1)
+    # print(f"Status of '{r['cluster_name']}': {r['status']}")
 
     # Get resources as lists of jsons
     print("Fetching nutrient names ...")
     nutrient_name_response, nutrient_name_jsons = food_resource.get_all_json_document(CNF_NUTRIENT_NAME_URL)
+    print(str(nutrient_name_jsons ))
+
     print("Fetching nutrient sources ...")
-    nutrient_source_response, nutrient_source_jsons = food_resource.get_all_json_document(CNF_NUTRIENT_SOURCE_URL)
+    #nutrient_source_response, nutrient_source_jsons = food_resource.get_all_json_document(CNF_NUTRIENT_SOURCE_URL)
     print("Fetching nutrient groups ...")
-    nutrient_group_response, nutrient_group_jsons = food_resource.get_all_json_document(CNF_NUTRIENT_GROUP_URL)
+    # nutrient_group_response, nutrient_group_jsons = food_resource.get_all_json_document(CNF_NUTRIENT_GROUP_URL)
     print("Fetching nutrient amounts ...")
-    nutrient_amount_response, nutrient_amount_jsons = food_resource.get_all_json_document(CNF_NUTRIENT_AMOUNT_URL)
+    # nutrient_amount_response, nutrient_amount_jsons = food_resource.get_all_json_document(CNF_NUTRIENT_AMOUNT_URL)
     print("Fetching foods ...")
-    food_response, food_jsons = food_resource.get_all_json_document(CNF_FOOD_URL)
+    #food_response, food_jsons = food_resource.get_all_json_document(CNF_FOOD_URL)
 
     # Index the resources gotten
-    #foodIndexer.index_documents(nutrient_name_jsons, elastic_client, "nutrient_names")
+    # foodIndexer.index_documents(nutrient_name_jsons, elastic_client, "nutrient_names")
     #foodIndexer.index_documents(nutrient_source_jsons, elastic_client, "nutrient_sources")
     #foodIndexer.index_documents(nutrient_group_jsons, elastic_client, "nutrient_groups")
     #foodIndexer.index_documents(nutrient_amount_jsons, elastic_client, "nutrient_amounts")

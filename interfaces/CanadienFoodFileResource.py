@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
-import pandas as pd
+#import pandas as pd
 import requests
 
 from requests.exceptions import HTTPError
