@@ -48,10 +48,10 @@ def find_data_GCA():
 
 
     data = []
-    k = 1
+
     for link0 in reccete:
-        print(k)
-        k = k + 1
+
+
         titre = link0.find(class_="media-heading").get_text()
         link5 = link0.find(class_="media-body").get_text()
         link2 = link0.find('a')

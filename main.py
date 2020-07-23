@@ -61,6 +61,7 @@ if __name__ == "__main__":
     #foodIndexer.index_documents(food_jsons, elastic_client, "foods")
     """
     gac.find_data_GCA()
+    elastic_recette_gad.index_documents_gac()
 
     print("Got here")
 

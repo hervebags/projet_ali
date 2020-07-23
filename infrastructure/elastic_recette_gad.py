@@ -31,8 +31,6 @@ def index_documents_gac(elastic_client,json_list, index_name):
     elastic_client.indices.create(index=index_name, ignore=400)
 
     # Prepare actions to be executed by the bulk helper
-
-
     data = generate_data(json_list, index_name)
     helpers.bulk(elastic_client, data,
                  chunk_size=1000,
