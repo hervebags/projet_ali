@@ -6,7 +6,7 @@ from elasticsearch import Elasticsearch, helpers
 
 import infrastructure.FoodIndexer as FoodIndexer
 import infrastructure.elastic_recette_gad as elastic_recette_gad
-import interfaces. as G_A_C
+import interfaces.guidealimentaireca as gac
 """ NB: You must start ElasticSearch before using this code """
 
 
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     #foodIndexer.index_documents(nutrient_amount_jsons, elastic_client, "nutrient_amounts")
     #foodIndexer.index_documents(food_jsons, elastic_client, "foods")
     """
-    G_A_C.find_data_GCA()
+    gac.find_data_GCA()
 
     print("Got here")
 

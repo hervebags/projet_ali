@@ -45,7 +45,7 @@ def find_data_GCA():
 
     reccete = soup_1.find_all(class_='sect-lnks media')
     print('il ya ' + str(reccete.__len__())+"recettes")
-    print()
+
 
     data = []
     k = 1
@@ -99,7 +99,7 @@ def find_data_GCA():
                 if i.__len__() > 0:
                     préparation_final.append(i)
 
-        # ----------------------------------------------------
+        #truc ----------------------------------------------------
         truc = linkr0.find(class_="panel-body")
         truc0 = truc.find_all('li')
         truc_final = []
@@ -115,7 +115,7 @@ def find_data_GCA():
 
 
                 categorie = categorie0[1].replace('\xa0', ' ').split(',')
-                print(categorie)
+
 
             if findWholeWord('préparation')(i.get_text()) and findWholeWord('cuisson')(i.get_text()):
                 result = i.get_text()
