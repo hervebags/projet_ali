@@ -144,6 +144,7 @@ def find_data_GCA():
 
         data.append(resultat)
 
+    print('Creating data.txt')
     with open('data.txt', 'w', encoding='utf8') as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=2)
 

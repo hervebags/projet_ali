@@ -7,9 +7,7 @@ from elasticsearch import Elasticsearch, helpers
 es = Elasticsearch(hosts="localhost:9200")
 elastic_client = Elasticsearch()
 
-data_json = None
-with open('data.txt', encoding='utf8') as json_file:
-    data_json = json.load(json_file)
+
 
 def generate_data(json_list, index: str):
     for doc in json_list:
@@ -23,7 +21,10 @@ def generate_data(json_list, index: str):
                 }
 
 
-def index_documents_gac(elastic_client,json_list, index_name):
+def index_documents_gac(elastic_client, index_name):
+    data_json = None
+    with open('data.txt', encoding='utf8') as json_file:
+        data_json = json.load(json_file)
     # Create index
     print(f"Deleting index '{index_name}'...")
     elastic_client.indices.delete(index=index_name, ignore=[400, 404])
@@ -31,7 +32,7 @@ def index_documents_gac(elastic_client,json_list, index_name):
     elastic_client.indices.create(index=index_name, ignore=400)
 
     # Prepare actions to be executed by the bulk helper
-    data = generate_data(json_list, index_name)
+    data = generate_data(data_json, index_name)
     helpers.bulk(elastic_client, data,
                  chunk_size=1000,
                  request_timeout=120)
