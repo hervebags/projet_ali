@@ -7,7 +7,7 @@ from json import dumps
 from time import sleep
 from uuid import uuid4
 
-import infrastructure.Elastic_domain as elastic_domain
+import infrastructure.ElasticDomain as elastic_domain
 import os, uuid
 
 

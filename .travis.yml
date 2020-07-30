@@ -1,0 +1,5 @@
+language: python
+script: mvn verify -B
+rvm:
+ - 2.2
+ - jruby
