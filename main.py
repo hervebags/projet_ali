@@ -6,11 +6,14 @@ import xlrd
 from uuid import uuid4
 
 from elasticsearch import Elasticsearch, helpers
-from scipy.stats import linregress
 
 import infrastructure.FoodIndexer as FoodIndexer
 import infrastructure.RecipesIndexer as elastic_recette_gad
 import interfaces.GuideAlimentaireCaResource as gac
+import domaine.FoodScorer as FoodScorer
+import infrastructure.ElasticDataFetcher as ElasticDataFetcher
+import domaine.NutrientPortionConverter as NutrientPortionConverter
+from domaine import FoodRecommender
 
 """ NB: You must start ElasticSearch before using this code """
 
@@ -31,146 +34,6 @@ CNF_YIELD_AMOUNT_URL = base + "canadian-nutrient-file/yieldamount/?lang=fr&type=
 
 food_resource = FoodResource.CanadienFoodFileResource()
 foodIndexer = FoodIndexer.FoodIndexer()
-
-
-def prepare_query_body(query_field_name, query_field_path, query_string="céréale", number_of_items_to_return=5):
-    query_body = {
-        "aggs": {
-            "Food_desc_aggr": {
-                "terms": {
-                    "field": "food_description.keyword",
-                    "size": number_of_items_to_return
-                },
-                "aggs": {
-                    "nutrients_nested_aggregation": {
-                        "nested": {
-                            "path": "nutrients"
-                        },
-                        "aggs": {
-                            query_field_name: {
-                                # Must be aggregation name ---------------------------------------------
-                                "terms": {
-                                    "field": query_field_path,
-                                    "include": [
-                                        "LIPIDES TOTAUX",
-                                        "ACIDES GRAS SATURÉS TOTAUX",
-                                        "ACIDES GRAS TRANS TOTAUX",
-                                        "CHOLESTEROL",
-                                        "SODIUM",
-                                        "GLUCIDES TOTAUX (PAR DIFFÉRENCE)",
-                                        "FIBRES ALIMENTAIRES TOTALES",
-                                        "SUCRES TOTAUX",
-                                        "PROTÉINES",
-                                        "ÉQUIVALENTS D'ACTIVITÉ DU RÉTINOL",
-                                        "VITAMINE C",
-                                        "CALCIUM",
-                                        "FER",
-                                        "POTASSIUM"
-                                    ],
-                                    "size": 20
-                                },
-                                "aggs": {
-                                    "Total_nutrients_values": {
-                                        "sum": {
-                                            "field": "nutrients.nutrient_value"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "query": {
-            "match": {
-                "food_description": query_string
-            }
-        }
-    }
-    return query_body
-
-
-def fetch_main_nutrients_and_their_values(query_field_name, query_field_path, query_string="céréale",
-                                          number_of_items_to_return=5):
-    """
-    Il y a 13 nutrits principaux d'après .....
-
-    :param query_field_name:
-    :param query_field_path:
-    :param query_string:
-    :param number_of_items_to_return:
-    :return:
-    """
-    query_body = prepare_query_body(query_field_name, query_field_path, query_string="céréale",
-                                    number_of_items_to_return=5)
-
-    res = elastic_client.search(index="foods_enriched",
-                                body=query_body, size=10,
-                                track_total_hits=True)
-    nutrients_with_their_values_json = res['aggregations']['Food_desc_aggr']['buckets']
-
-    return nutrients_with_their_values_json
-
-
-def convert_to_reference_proportion(nutrients_with_their_values_json, reference_proportion=55):
-    """
-
-    :param nutrients_with_their_values_json:
-    :param reference_proportion: in gram
-    :return:
-    """
-    fcen_portion = 100  # 100 g
-    foods_with_nutrients_in_reference_proportion = nutrients_with_their_values_json.copy()
-
-    for food_index, food in enumerate(foods_with_nutrients_in_reference_proportion):
-        for nutrient_index, nutrient in enumerate(food['nutrients_nested_aggregation']['nutrient_names']['buckets']):
-            nutrient_in_reference_proportion =\
-                nutrient['Total_nutrients_values']['value'] * reference_proportion / fcen_portion
-
-            foods_with_nutrients_in_reference_proportion[food_index].get('nutrients_nested_aggregation')\
-                .get('nutrient_names').get('buckets')[nutrient_index].get('Total_nutrients_values')\
-                .update({'value': nutrient_in_reference_proportion})
-        # print()
-    return foods_with_nutrients_in_reference_proportion
-
-
-def compute_fiber_score(fiber_value_in_gram):
-    """
-    Calculer la pente de la droite de régression linéaire.
-    Calculer l’ordonnée à l’origine d’une droite de régression linéaire.
-
-    :param nutrients_with_their_values_json:
-    :param fiber_value_in_gram:
-    :return:
-    """
-    x = [2, 6]
-    y = [0.5, 0.9]
-    x_y_lin_regression = linregress(x, y)
-    slope = x_y_lin_regression.slope
-    intercept = x_y_lin_regression.intercept
-
-    fiber_score = 0
-    if (slope * fiber_value_in_gram + intercept) > 1:
-        fiber_score = 1
-    else:
-        if (slope * fiber_value_in_gram + intercept) < 0:
-            fiber_score = 0
-        else:
-            fiber_score = slope * fiber_value_in_gram + intercept
-    return fiber_score
-
-
-def compute_sugar_score():
-    pass
-
-
-def compute_global_score():
-    pass
-
-
-def get_recommandation_bon_choix_ou_meilleur_choix():
-    pass
 
 
 if __name__ == "__main__":
@@ -221,13 +84,22 @@ if __name__ == "__main__":
     # Fetch the 13 main nutrients and their values
     query_field_nutrients_groups = "nutrients.name.nutrient_group.nutrient_group_name.keyword"
     query_field_nutrients = "nutrients.name.nutrient_name.keyword"
-    main_nutrients_and_their_values = fetch_main_nutrients_and_their_values("nutrient_names",
-                                                                            query_field_nutrients,
-                                                                            query_string="céréale",
-                                                                            number_of_items_to_return=5)
-    foods_and_nutrients_in_reference_proportion = convert_to_reference_proportion(main_nutrients_and_their_values,
-                                                                                  reference_proportion=55)
+    main_nutrients_and_their_values = ElasticDataFetcher.\
+        fetch_main_nutrients_and_their_values(elastic_client,
+                                              "nutrient_names",
+                                              query_field_nutrients,
+                                              query_string="céréale",
+                                              number_of_items_to_return=20)
 
-    print("fiber score is: ", compute_fiber_score(4))
+    foods_and_nutrients_in_reference_proportion = NutrientPortionConverter.\
+        convert_to_reference_proportion(main_nutrients_and_their_values, reference_proportion=55)
+
+    # Compute scores
+    fiber_scores = FoodScorer.compute_fiber_scores(foods_and_nutrients_in_reference_proportion)
+    sugar_scores = FoodScorer.compute_sugar_scores(foods_and_nutrients_in_reference_proportion)
+    global_scores = FoodScorer.compute_global_score(fiber_scores, sugar_scores)
+
+    # Make recommendations
+    scores_and_recommendations = FoodRecommender.make_recommendations(foods_and_nutrients_in_reference_proportion)
 
     print("Got here!")
