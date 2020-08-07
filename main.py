@@ -1,6 +1,7 @@
 import infrastructure.ElasticDomain as elastic_domain
 import interfaces.CanadienFoodFileResource as FoodResource
 import json
+import pandas as pd
 import xlrd
 
 from uuid import uuid4
@@ -13,7 +14,7 @@ import interfaces.GuideAlimentaireCaResource as gac
 import domaine.FoodScorer as FoodScorer
 import infrastructure.ElasticDataFetcher as ElasticDataFetcher
 import domaine.NutrientPortionConverter as NutrientPortionConverter
-from domaine import FoodRecommender
+import domaine.FoodRecommender as FoodRecommender
 
 """ NB: You must start ElasticSearch before using this code """
 
@@ -81,7 +82,7 @@ if __name__ == "__main__":
 
     # elastic_recette_gad.index_documents_gac(elastic_client,"gac")
 
-    # Fetch the 13 main nutrients and their values
+    # Fetch the 13 main nutrients (plus potassium) and their values
     query_field_nutrients_groups = "nutrients.name.nutrient_group.nutrient_group_name.keyword"
     query_field_nutrients = "nutrients.name.nutrient_name.keyword"
     main_nutrients_and_their_values = ElasticDataFetcher.\
@@ -89,17 +90,32 @@ if __name__ == "__main__":
                                               "nutrient_names",
                                               query_field_nutrients,
                                               query_string="céréale",
-                                              number_of_items_to_return=20)
+                                              number_of_items_to_return=300)
 
     foods_and_nutrients_in_reference_proportion = NutrientPortionConverter.\
         convert_to_reference_proportion(main_nutrients_and_their_values, reference_proportion=55)
 
     # Compute scores
-    fiber_scores = FoodScorer.compute_fiber_scores(foods_and_nutrients_in_reference_proportion)
-    sugar_scores = FoodScorer.compute_sugar_scores(foods_and_nutrients_in_reference_proportion)
-    global_scores = FoodScorer.compute_global_score(fiber_scores, sugar_scores)
+    fiber_scores_computed = FoodScorer.compute_fiber_scores(foods_and_nutrients_in_reference_proportion)
+    sugar_scores_computed = FoodScorer.compute_sugar_scores(foods_and_nutrients_in_reference_proportion)
+    global_scores_computed = FoodScorer.compute_global_score(fiber_scores_computed, sugar_scores_computed)
 
     # Make recommendations
     scores_and_recommendations = FoodRecommender.make_recommendations(foods_and_nutrients_in_reference_proportion)
+
+    # Display recommendation table
+    nutrients_matrix, indices, nutrients_columns, fiber_scores, sugar_scores, global_scores, recommendations = \
+        FoodRecommender.display_recommendation_table(
+            foods_and_nutrients_in_reference_proportion,
+            scores_and_recommendations)
+
+    nutrients_data_frame = pd.DataFrame(nutrients_matrix, index=nutrients_columns, columns=indices)
+    nutrients_data_frame = nutrients_data_frame.T
+
+    # Add scores and recommendations to nutrients matrix
+    nutrients_data_frame.insert(14, 'Fiber score', fiber_scores)
+    nutrients_data_frame.insert(15, 'Sugar score', sugar_scores)
+    nutrients_data_frame.insert(16, 'Global score', global_scores)
+    nutrients_data_frame.insert(17, 'Recommendation', recommendations)
 
     print("Got here!")

@@ -48,8 +48,25 @@ def prepare_query_body(query_field_name, query_field_path, query_string="céréa
             }
         },
         "query": {
-            "match": {
-                "food_description": query_string
+            "bool": {
+                "must": [
+                    {
+                        "match": {
+                            "food_description": query_string
+                        }
+                    },
+                    {
+                        "bool": {
+                            "must_not": [
+                                {
+                                    "match": {
+                                        "food_description": "bébé"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         }
     }
