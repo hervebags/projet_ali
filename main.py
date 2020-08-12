@@ -38,11 +38,14 @@ foodIndexer = FoodIndexer.FoodIndexer()
 
 
 if __name__ == "__main__":
-    elastic_client = Elasticsearch(hosts=[elastic_domain.domain_address])
+    elastic_client_local = Elasticsearch(hosts=[elastic_domain.domain_address_local])
+    elastic_client_remote = Elasticsearch(hosts=[elastic_domain.domain_address_remote])
+
 
     # Test health
-    r = elastic_client.cluster.health(wait_for_status='yellow', request_timeout=1)
+    r = elastic_client_local.cluster.health(wait_for_status='yellow', request_timeout=1)
     print(f"Status of '{r['cluster_name']}': {r['status']}")
+    print("Got here")
 
     # Get resources as lists of jsons
     """
@@ -55,10 +58,12 @@ if __name__ == "__main__":
     # nutrient_group_response, nutrient_group_jsons = food_resource.get_all_json_document(CNF_NUTRIENT_GROUP_URL)
     print("Fetching nutrient amounts ...")
     # nutrient_amount_response, nutrient_amount_jsons = food_resource.get_all_json_document(CNF_NUTRIENT_AMOUNT_URL)
-    print("Fetching foods ...")
     #ici ----------------
     print('matching ici')
-    food_response, food_jsons = food_resource.get_all_json_document(CNF_FOOD_URL)
+    """
+    #print("Fetching foods ...")
+    #food_response, food_jsons = food_resource.get_all_json_document(CNF_FOOD_URL)
+    """
     print("Fetching serving sizes ...")
     serving_size_response, serving_size_jsons = food_resource.get_all_json_document(CNF_SERVING_SIZE_URL)
     print("Fetching refuse amounts ...")
@@ -79,31 +84,45 @@ if __name__ == "__main__":
     # foodIndexer.index_documents(serving_size_jsons, elastic_client, "serving_size")
     # foodIndexer.index_documents(refuse_amount_jsons, elastic_client, "refuse_amount")
     # foodIndexer.index_documents(yield_amount_jsons, elastic_client, "yield_amount")
+    # foodIndexer.index_documents(food_jsons, elastic_client, "foods_for_suggestion")
 
     # elastic_recette_gad.index_documents_gac(elastic_client,"gac")
 
     # Fetch the 13 main nutrients (plus potassium) and their values
+    """
     query_field_nutrients_groups = "nutrients.name.nutrient_group.nutrient_group_name.keyword"
     query_field_nutrients = "nutrients.name.nutrient_name.keyword"
     main_nutrients_and_their_values = ElasticDataFetcher.\
         fetch_main_nutrients_and_their_values(elastic_client,
                                               "nutrient_names",
                                               query_field_nutrients,
+                                              index="foods_enriched",
                                               query_string="céréale",
                                               number_of_items_to_return=300)
 
     foods_and_nutrients_in_reference_proportion = NutrientPortionConverter.\
         convert_to_reference_proportion(main_nutrients_and_their_values, reference_proportion=55)
+    """
+
+    # Fetch foods_enriched index
+    foods_enriched_generator = ElasticDataFetcher.fetch_food_enriched(
+        elastic_client_local, index="foods_enriched", size=5690
+    )
+    # Index foods_enriched to remote cluster
+    foodIndexer.index_generator_data(foods_enriched_generator, elastic_client_remote, "foods_enriched")
+
 
     # Compute scores
+    """
     fiber_scores_computed = FoodScorer.compute_fiber_scores(foods_and_nutrients_in_reference_proportion)
     sugar_scores_computed = FoodScorer.compute_sugar_scores(foods_and_nutrients_in_reference_proportion)
     global_scores_computed = FoodScorer.compute_global_score(fiber_scores_computed, sugar_scores_computed)
-
+    """
     # Make recommendations
-    scores_and_recommendations = FoodRecommender.make_recommendations(foods_and_nutrients_in_reference_proportion)
+    #scores_and_recommendations = FoodRecommender.make_recommendations(foods_and_nutrients_in_reference_proportion)
 
     # Display recommendation table
+    """
     nutrients_matrix, indices, nutrients_columns, fiber_scores, sugar_scores, global_scores, recommendations = \
         FoodRecommender.display_recommendation_table(
             foods_and_nutrients_in_reference_proportion,
@@ -111,11 +130,14 @@ if __name__ == "__main__":
 
     nutrients_data_frame = pd.DataFrame(nutrients_matrix, index=nutrients_columns, columns=indices)
     nutrients_data_frame = nutrients_data_frame.T
+    """
 
     # Add scores and recommendations to nutrients matrix
+    """
     nutrients_data_frame.insert(14, 'Fiber score', fiber_scores)
     nutrients_data_frame.insert(15, 'Sugar score', sugar_scores)
     nutrients_data_frame.insert(16, 'Global score', global_scores)
     nutrients_data_frame.insert(17, 'Recommendation', recommendations)
+    """
 
     print("Got here!")
