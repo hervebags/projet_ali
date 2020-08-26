@@ -1,8 +1,68 @@
 [
   {
+    "titre": "Frittatas caprese en forme de muffins",
+    "type": "Déjeuner",
+    "description": "Cette recette est pratique pour le déjeuner, le dîner ou le souper. Préparez-en une grande quantité et congelez-les pour les journées bien remplies. Servez-les avec des fruits frais et une rôtie à grains entiers!",
+    "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/Caprese-muffin-tin-frittatas.jpg",
+    "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/frittatas-caprese-muffins.html",
+    "ingrédients": [
+      {
+        "ingrédient": "6 œufs ",
+        "valeur": "6"
+      },
+      {
+        "ingrédient": "85 ml (⅓  tasse) de lait écrémé ou de boissons végétales enrichies non sucrées",
+        "valeur": "85"
+      },
+      {
+        "ingrédient": "2 ml (½ c.  à thé) de sel",
+        "valeur": "2"
+      },
+      {
+        "ingrédient": "2 ml (½ c.  à thé) de poivre ",
+        "valeur": "2"
+      },
+      {
+        "ingrédient": "2 tomates,  hachées finement",
+        "valeur": "2"
+      },
+      {
+        "ingrédient": "5 ml (1 c.  à thé) de basilic séché",
+        "valeur": "5"
+      },
+      {
+        "ingrédient": "125 ml (½  tasse) de mozzarella râpée faible en gras",
+        "valeur": "125"
+      }
+    ],
+    "préparation": [
+      "Vous  cherchez une idée de dîner rapide? Coupez la frittata en deux horizontalement  et insérez les morceaux dans une moitié de pita de grains entiers ou  enroulez-les dans une tortilla de maïs à grains entiers. ",
+      "Utilisez  les restes de légumes que vous avez dans votre réfrigérateur pour aider à  réduire le gaspillage alimentaire. Vous pouvez ajouter du chou frisé ou des  épinards sautés, ou du brocoli, du chou-fleur et des oignons hachés finement à  l’étape 2. ",
+      "Si vous  n’avez de moule à 6 muffins, utilisez un moule à 12 et remplissez les moules  vides avec de l’eau. Cela peut aider à protéger votre moule à muffin.   ",
+      "Vos petits  enfants peuvent vous aider à mélanger les ingrédients et à verser la pâte dans  les moules à muffins. Les plus âgés peuvent râper le fromage.",
+      " Doublez de la recette et conservez le surplus jusqu’à trois ou  quatre jours au réfrigérateur et jusqu’à deux ou trois mois au congélateur.  Réchauffez-les au four à micro-ondes lorsque vous êtes prêt à les manger."
+    ],
+    "truc": [
+      "Vous  cherchez une idée de dîner rapide? Coupez la frittata en deux horizontalement  et insérez les morceaux dans une moitié de pita de grains entiers ou  enroulez-les dans une tortilla de maïs à grains entiers. ",
+      "Utilisez  les restes de légumes que vous avez dans votre réfrigérateur pour aider à  réduire le gaspillage alimentaire. Vous pouvez ajouter du chou frisé ou des  épinards sautés, ou du brocoli, du chou-fleur et des oignons hachés finement à  l’étape 2. ",
+      "Si vous  n’avez de moule à 6 muffins, utilisez un moule à 12 et remplissez les moules  vides avec de l’eau. Cela peut aider à protéger votre moule à muffin.   ",
+      "Vos petits  enfants peuvent vous aider à mélanger les ingrédients et à verser la pâte dans  les moules à muffins. Les plus âgés peuvent râper le fromage.",
+      " Doublez de la recette et conservez le surplus jusqu’à trois ou  quatre jours au réfrigérateur et jusqu’à deux ou trois mois au congélateur.  Réchauffez-les au four à micro-ondes lorsque vous êtes prêt à les manger."
+    ],
+    "cuisson": "15",
+    "portion": "6",
+    "temps": "12",
+    "Catégories": [
+      " végétarien",
+      " pour enfants",
+      " congelable",
+      " 30 minutes ou moins"
+    ]
+  },
+  {
     "titre": "Gruau classique préparé la veille",
     "type": "Déjeuner",
-    "description": "Un fantastique déjeuner prêt à avaler, facile et incroyablement polyvalent. ",
+    "description": "Un fantastique déjeuner prêt à avaler, facile et incroyablement polyvalent.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/overnight-oats-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/gruau-veille.html",
     "ingrédients": [
@@ -53,8 +113,8 @@
   {
     "titre": "Œufs brouillés aux légumes",
     "type": "Déjeuner",
-    "description": "Remplis d’une panoplie de légumes, ces œufs brouillés se préparent rapidement et facilement pour faire un repas savoureux. ",
-    "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/Œufs-brouillés -légumes-80x80.jpg",
+    "description": "Remplis d'une panoplie de légumes, ces œufs brouillés se préparent rapidement et facilement pour faire un repas savoureux.",
+    "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/egg-veggie-scramble-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/oeufs-brouilles-legumes.html",
     "ingrédients": [
       {
@@ -162,7 +222,7 @@
   {
     "titre": "Savoureux muffins au brocoli et fromage",
     "type": "Déjeuner",
-    "description": "Cette recette incontournable est parfaite pour les déjeuners sur le pouce. Ces muffins peuvent également se savourer sur l'heure du lunch et s'avérer un délicieux choix pour remplacer les sandwichs.Ils deviendront vite l’une de vos options préférées!",
+    "description": "Cette recette incontournable est parfaite pour les déjeuners sur le pouce. Ces muffins peuvent également se savourer sur l'heure du lunch et s'avérer un délicieux choix pour remplacer les sandwichs.Ils deviendront vite l'une de vos options préférées!",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/broccoli-cheese-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/savoureux-muffins-brocoli-et-fromage.html",
     "ingrédients": [
@@ -439,7 +499,7 @@
     ]
   },
   {
-    "titre": "Œufs  pochés classiques",
+    "titre": "Œufs pochés classiques",
     "type": "Déjeuner",
     "description": "Vous voulez faire sensation lors de votre prochain brunch? Il suffit de suivre quelques étapes faciles et, en 5 minutes, vous obtiendrez des œufs pochés dignes du resto.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/poached-eggs-oeuf-poches-80x80.jpg",
@@ -547,7 +607,7 @@
   {
     "titre": "Végé-Frittata",
     "type": "Déjeuner",
-    "description": "Vous ne vous trompez jamais en servant des œufs au déjeuner, au diner ou au souper.Pour plus de saveur, ajoutez différents poivrons ou d’autres légumes verts comme la roquette ou le kale.",
+    "description": "Vous ne vous trompez jamais en servant des œufs au déjeuner, au diner ou au souper.Pour plus de saveur, ajoutez différents poivrons ou d'autres légumes verts comme la roquette ou le kale.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/vege-frittata-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/vege-frittata.html",
     "ingrédients": [
@@ -692,9 +752,72 @@
     ]
   },
   {
+    "titre": "Légumes verts au sésame grésillants",
+    "type": "Souper",
+    "description": "Combiner ces délicieux légumes verts avec un aliment protéiné (comme du poulet, du bœuf, du poisson ou du tofu) et un aliment à grains entiers (comme du quinoa ou des pâtes à grains entiers)!",
+    "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/Sizzlin-sesame-greens.jpg",
+    "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/legumes-verts-sesame-gresillants.html",
+    "ingrédients": [
+      {
+        "ingrédient": "7 ml (½ c.  à table) d’huile végétale",
+        "valeur": "7"
+      },
+      {
+        "ingrédient": "½ tête de  brocoli, haché ",
+        "valeur": "null"
+      },
+      {
+        "ingrédient": "2 poignées  de haricots verts, parés (environ 500 ml/2 tasses)",
+        "valeur": "2"
+      },
+      {
+        "ingrédient": "5 ml (1 c.  à thé) de poudre d’ail ",
+        "valeur": "5"
+      },
+      {
+        "ingrédient": "250 ml (1  tasse) de pois verts surgelés ",
+        "valeur": "250"
+      },
+      {
+        "ingrédient": "30 ml (2 c.  à table) d’huile de sésame",
+        "valeur": "30"
+      },
+      {
+        "ingrédient": "15 ml (1 c.  à table) de graines de sésame ",
+        "valeur": "15"
+      },
+      {
+        "ingrédient": "Sel et  poivre au goût",
+        "valeur": "null"
+      }
+    ],
+    "préparation": [
+      "Demandez  aux enfants de hacher le brocoli et de parer les haricots verts. Parions que  s’ils vous aident, ils aimeraient les manger!",
+      "À l’étape  1, utilisez des restes de bouillon de légumes ou de poulet faible en sodium au  lieu de l’eau pour ajouter de la saveur.",
+      "Essayez  d’utiliser de l’huile d’olive si vous n’avez pas d’huile de sésame. Dans une  poêle à feu moyen, grillez  les graines de sésame dans l’huile d’olive avant de les ajouter à l’étape 4. ",
+      "Remplacez  la palette de légumes verts par des choux de Bruxelles, des poivrons verts ou  même des courgettes. ",
+      "Rappelez-vous, une petite  quantité de sel suffit. Goûtez aux aliments avant d’ajouter  du sel."
+    ],
+    "truc": [
+      "Demandez  aux enfants de hacher le brocoli et de parer les haricots verts. Parions que  s’ils vous aident, ils aimeraient les manger!",
+      "À l’étape  1, utilisez des restes de bouillon de légumes ou de poulet faible en sodium au  lieu de l’eau pour ajouter de la saveur.",
+      "Essayez  d’utiliser de l’huile d’olive si vous n’avez pas d’huile de sésame. Dans une  poêle à feu moyen, grillez  les graines de sésame dans l’huile d’olive avant de les ajouter à l’étape 4. ",
+      "Remplacez  la palette de légumes verts par des choux de Bruxelles, des poivrons verts ou  même des courgettes. ",
+      "Rappelez-vous, une petite  quantité de sel suffit. Goûtez aux aliments avant d’ajouter  du sel."
+    ],
+    "cuisson": "10",
+    "portion": "4",
+    "temps": "7",
+    "Catégories": [
+      " végétarien",
+      " pour enfants",
+      " 30 minutes ou moins "
+    ]
+  },
+  {
     "titre": "Crêpes aux carottes et pommes de terre",
     "type": "Souper",
-    "description": "Préparez-en une bonne quantité que vous pourrez savourer tout au long de la semaine pour un déjeuner, un souper ou collation vite fait. ",
+    "description": "Préparez-en une bonne quantité que vous pourrez savourer tout au long de la semaine pour un déjeuner, un souper ou collation vite fait.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/potato-pancakes-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/crepes-carottes-pommes.html",
     "ingrédients": [
@@ -959,7 +1082,7 @@
   {
     "titre": "Roulé à la salade de thon à apporter",
     "type": "Souper",
-    "description": "Cette recette simple comme bonjour est idéale pour emporter au bureau ou à l’école",
+    "description": "Cette recette simple comme bonjour est idéale pour emporter au bureau ou à l'école",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/tuna-wrap-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/wrap-thon.html",
     "ingrédients": [
@@ -1304,7 +1427,7 @@
   {
     "titre": "Macaroni au fromage avec éclats de légumes",
     "type": "Souper",
-    "description": "Revampez votre macaroni au fromage en y ajoutant des bouchées de légumes dans une sauce onctueuse. Crémeux à souhait, il vous plaira  à coup sûr. Pas le temps de couper les légumes en petits morceaux? Aucun souci : il suffit de cuire les gros morceaux un peu plus longtemps jusqu'à ce qu'ils soient tendres. ",
+    "description": "Revampez votre macaroni au fromage en y ajoutant des bouchées de légumes dans une sauce onctueuse. Crémeux à souhait, il vous plaira à coup sûr. Pas le temps de couper les légumes en petits morceaux? Aucun souci : il suffit de cuire les gros morceaux un peu plus longtemps jusqu'à ce qu'ils soient tendres.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/mac_cheese_maca-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/macaroni-fromage-eclats-legumes.html",
     "ingrédients": [
@@ -1448,7 +1571,7 @@
   {
     "titre": "Gratin de quinoa et de légumes",
     "type": "Souper",
-    "description": "Réconfortant et coloré, ce gratin de légumes et de quinoa saura vous ravir. Avec le fromage fondu , moelleux et craquant sur les côtés, ce plat est irrésistible.",
+    "description": "Réconfortant et coloré, ce gratin de légumes et de quinoa saura vous ravir. Avec le fromage fondu, moelleux et craquant sur les côtés, ce plat est irrésistible.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/quinoa-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/gratin-quinoa-et-legumes.html",
     "ingrédients": [
@@ -1589,7 +1712,7 @@
   {
     "titre": "Lanières de dinde croustillantes avec frites au four",
     "type": "Souper",
-    "description": "Bonnes à s’en lécher les doigts, ces lanières de dinde sont remplies de saveur et sont juste assez croustillantes grâce à sa panure à base de. ",
+    "description": "Bonnes à s'en lécher les doigts, ces lanières de dinde sont remplies de saveur et sont juste assez croustillantes grâce à sa panure à base de.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/turkey-fingers-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/lanieres-dinde-croustillantes-frites-four.html",
     "ingrédients": [
@@ -1807,9 +1930,9 @@
     ]
   },
   {
-    "titre": "Sandwich ouvert aux œufs ",
+    "titre": "Sandwich ouvert aux œufs",
     "type": "Souper",
-    "description": "Un classique revu et amélioré grâce à un peu de couleur et de croquant. Gardez des œufs cuits dur au frigo pour préparer ces sandwichs en un tournemain. ",
+    "description": "Un classique revu et amélioré grâce à un peu de couleur et de croquant. Gardez des œufs cuits dur au frigo pour préparer ces sandwichs en un tournemain.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/egg-salad-sand-oeufs-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/sandwich-ouverts-aux-oeufs.html",
     "ingrédients": [
@@ -1945,7 +2068,7 @@
   {
     "titre": "Bifteck de flanc grillé avec légumes barbecue",
     "type": "Souper",
-    "description": "Impossible de se tromper avec ce duo de steak et de légumes sur le gril.Coupez le  bifteck en tranches fines dans le sens contraire de la fibre de la viande pour des bouchées qui fondent dans la bouche. Le vinaigre balsamique rehausse le bœuf à merveille dans cette recette!",
+    "description": "Impossible de se tromper avec ce duo de steak et de légumes sur le gril.Coupez le bifteck en tranches fines dans le sens contraire de la fibre de la viande pour des bouchées qui fondent dans la bouche. Le vinaigre balsamique rehausse le bœuf à merveille dans cette recette!",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/flank-steak-bifteck-flanc-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/bifteck-flanc-grille-legumes-barbecue.html",
     "ingrédients": [
@@ -2693,7 +2816,7 @@
   {
     "titre": "Spaghetti avec boulettes de dinde",
     "type": "Souper",
-    "description": "L’odeur de sauce tomates mijotée embaumera toute la cuisine avec cette recette de spaghetti! ",
+    "description": "L'odeur de sauce tomates mijotée embaumera toute la cuisine avec cette recette de spaghetti!",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/spaghetti-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/spaghetti-familial-boulettes-dinde.html",
     "ingrédients": [
@@ -2795,7 +2918,7 @@
     ]
   },
   {
-    "titre": "Roulé grec aux oeufs et au couscous ",
+    "titre": "Roulé grec aux oeufs et au couscous",
     "type": "Souper",
     "description": "Pour ajouter une source de protéines et une texture crémeuse à ce mélange, mettez-y des œufs!",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/eggWrap-rouleauOeufs-80x80.jpg",
@@ -2873,7 +2996,7 @@
   {
     "titre": "Chaudrée de palourdes crémeuse",
     "type": "Souper",
-    "description": "Cette recette populaire dans les Maritimes est excellente en entrée et parfaite pour un dîner nourrissant accompagnée d’une salade!",
+    "description": "Cette recette populaire dans les Maritimes est excellente en entrée et parfaite pour un dîner nourrissant accompagnée d'une salade!",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/clam-chowder-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/chaudree-palourdes-cremeuse.html",
     "ingrédients": [
@@ -2947,7 +3070,7 @@
   {
     "titre": "Ragoût de légumes et lentilles au cari",
     "type": "Souper",
-    "description": "Ce copieux ragoût végétarien embaumera votre cuisine d’un parfum envoûtant d’épices indiennes!",
+    "description": "Ce copieux ragoût végétarien embaumera votre cuisine d'un parfum envoûtant d'épices indiennes!",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/stew-ragout-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/ragout-legumes-et-lentilles-cari.html",
     "ingrédients": [
@@ -3324,9 +3447,9 @@
     ]
   },
   {
-    "titre": "Burritos au vivaneau de la côte ouest ",
+    "titre": "Burritos au vivaneau de la côte ouest",
     "type": "Souper",
-    "description": "Ces burritos sont un excellent moyen d’ajouter du poisson à votre alimentation.Personnalisez votre burrito avec des légumes colorés.",
+    "description": "Ces burritos sont un excellent moyen d'ajouter du poisson à votre alimentation.Personnalisez votre burrito avec des légumes colorés.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/snapper%20burritios.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/burritos-vivaneau-cote-ouest.html",
     "ingrédients": [
@@ -3406,7 +3529,7 @@
     ]
   },
   {
-    "titre": "Couscous aux légumes ",
+    "titre": "Couscous aux légumes",
     "type": "Souper",
     "description": "Voici une recette débordante de couleurs et de bonne humeur! Simple et délicieux, ce couscous que vous pouvez adapter selon vos goûts, constitue un savoureux repas santé qui,vous plaira à coup sûr!",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/couscous.jpg",
@@ -3473,7 +3596,7 @@
     ]
   },
   {
-    "titre": "Cari de lentilles et d’aubergines ",
+    "titre": "Cari de lentilles et d'aubergines",
     "type": "Souper",
     "description": "Cette recette aromatique embaumera votre cuisine et épatera vos convives.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/eggplant-lentil-stew.jpg",
@@ -3543,9 +3666,9 @@
     ]
   },
   {
-    "titre": "Ragoût d’orignal",
+    "titre": "Ragoût d'orignal",
     "type": "Souper",
-    "description": "Complétez l’expérience « de la forêt à la table » avec ce ragoût facile à préparer.",
+    "description": "Complétez l'expérience « de la forêt à la table » avec ce ragoût facile à préparer.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/canada-food-guide/tips-healthy-eating/meal-planning-cooking-healthy-choices/recipes/moose-stew-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/ragout-orignal.html",
     "ingrédients": [
@@ -3692,7 +3815,7 @@
     ]
   },
   {
-    "titre": "Poulet à l’ananas et au gingembre ",
+    "titre": "Poulet à l'ananas et au gingembre",
     "type": "Souper",
     "description": "Ce poulet rafraîchissant est tendre et très savoureux.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/pineapple-ginger-chicken.jpg",
@@ -3755,7 +3878,7 @@
   {
     "titre": "Soupe au maïs, aux haricots et à la courge (soupe des Trois Soeurs)",
     "type": "Souper",
-    "description": "Le maïs, les haricots et la courge font une soupe consistante qu’il fait bon savourer lors des longues soirées enneigées d’hiver.",
+    "description": "Le maïs, les haricots et la courge font une soupe consistante qu'il fait bon savourer lors des longues soirées enneigées d'hiver.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/canada-food-guide/tips-healthy-eating/meal-planning-cooking-healthy-choices/recipes/three-sisters-soup-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/soupe-trois-soeurs.html",
     "ingrédients": [
@@ -3900,9 +4023,9 @@
     ]
   },
   {
-    "titre": "Soupe aux nouilles d’inspiration vietnamienne",
+    "titre": "Soupe aux nouilles d'inspiration vietnamienne",
     "type": "Souper",
-    "description": "Un repas savoureux tout au long de l’année.",
+    "description": "Un repas savoureux tout au long de l'année.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/vietnamese-soup.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/soupe-nouilles-boeuf.html",
     "ingrédients": [
@@ -4187,9 +4310,185 @@
     ]
   },
   {
+    "titre": "Sandwichs de pommes ouverts",
+    "type": "Collations",
+    "description": "Alignez toutes les garnitures et laissez-vous aller! Ces sandwichs de pommes amusants et naturellement sucrés plairont aux personnes de tout âge. Ils sont parfaits pour la collation après l'école, mais peuvent être servis en tout temps.",
+    "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/Open-faced-applewiches.jpg",
+    "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/sandwiches-pommes-ouverts.html",
+    "ingrédients": [
+      {
+        "ingrédient": "60 ml (¼  tasse) de beurre d’amande ou d’arachide naturel ou une  alternative sans noix ",
+        "valeur": "60"
+      },
+      {
+        "ingrédient": "75 ml (⅓  tasse) de yogourt grec nature 0 % M.G.",
+        "valeur": "75"
+      },
+      {
+        "ingrédient": "Un soupçon  de cannelle",
+        "valeur": "null"
+      },
+      {
+        "ingrédient": "2 pommes  (n’importe quelle sorte), épépinées et tranchées finement à l’horizontale ",
+        "valeur": "2"
+      },
+      {
+        "ingrédient": "Garnitures  facultatives au choix : amandes tranchées, fruits séchés, noix de coco non  sucrée, graines",
+        "valeur": "null"
+      }
+    ],
+    "préparation": [
+      "Quel enfant n’aime pas être créatif? Les petits  chefs peuvent décorer leurs propres sandwichs de pommes ouverts avec leurs  garnitures préférées. ",
+      "Remplacez les pommes par d’autres fruits comme  des poires ou des pêches.",
+      "Transformez cette recette en une collation  facile à emporter en coupant  les pommes en dés. Mélangez les pommes  avec les autres ingrédients et placez le mélange dans  un pot ou un récipient avec couvercle hermétique. "
+    ],
+    "truc": [
+      "Quel enfant n’aime pas être créatif? Les petits  chefs peuvent décorer leurs propres sandwichs de pommes ouverts avec leurs  garnitures préférées. ",
+      "Remplacez les pommes par d’autres fruits comme  des poires ou des pêches.",
+      "Transformez cette recette en une collation  facile à emporter en coupant  les pommes en dés. Mélangez les pommes  avec les autres ingrédients et placez le mélange dans  un pot ou un récipient avec couvercle hermétique. "
+    ],
+    "cuisson": "0",
+    "portion": "4",
+    "temps": "10",
+    "Catégories": [
+      " végétarien",
+      " pour enfants",
+      " sans cuisson",
+      " 30 minutes ou moins "
+    ]
+  },
+  {
+    "titre": "Bouchées à l'avoine et à la citrouille sans cuisson",
+    "type": "Collations",
+    "description": "Ces bouchées à l'avoine et à la citrouille sans cuisson sont parfaites pour les collations à emporter ou lorsque les journées sont bien remplies. Ne nécessitant que quelques ingrédients pour la préparer, cette recette sera assurément adoptée par toute",
+    "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/Oat-and-pumpkin-no-bake-energy-bites.jpg",
+    "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/bouchees-avoine-citrouille.html",
+    "ingrédients": [
+      {
+        "ingrédient": "750 ml (3 tasses) de flocons  d’avoine",
+        "valeur": "750"
+      },
+      {
+        "ingrédient": "250 ml (1 tasse) de purée de  citrouille pure ",
+        "valeur": "250"
+      },
+      {
+        "ingrédient": "250 ml (1 tasse) de beurre  d’amande ou d’arachide naturel ou une alternative sans noix ",
+        "valeur": "250"
+      },
+      {
+        "ingrédient": "125 ml (½ tasse) de sirop  d’érable",
+        "valeur": "125"
+      },
+      {
+        "ingrédient": "5 ml (1 c. à thé) de cannelle",
+        "valeur": "5"
+      },
+      {
+        "ingrédient": "7 ml (½ c. à table) de vanille",
+        "valeur": "7"
+      }
+    ],
+    "préparation": [
+      "Si vous n’avez pas de purée de citrouilles ou si  vous n’aimez pas ça, remplacez-la par une tasse de bananes mûres écrasées.",
+      "Essayez  d’ajouter ½ tasse de noix hachées non salées, de graines de chanvre, de graines  de chia ou de flocons de noix de coco non sucrés. ",
+      "Les enfants  peuvent aider à mélanger les ingrédients et façonner les boules de 1 pouce. ",
+      "Faites  preuve de créativité! Amusez-vous à faire différentes formes, par exemple des  cœurs, un bonhomme de neige, des étoiles, des visages souriants, etc. ",
+      "Si le  mélange est trop sec, ajoutez du beurre de noix. Si le mélange est trop humide,  ajoutez des flocons d’avoine. ",
+      "Conservez  le surplus jusqu’à 7 jours au  réfrigérateur et jusqu’à 3 mois au  congélateur. "
+    ],
+    "truc": [
+      "Si vous n’avez pas de purée de citrouilles ou si  vous n’aimez pas ça, remplacez-la par une tasse de bananes mûres écrasées.",
+      "Essayez  d’ajouter ½ tasse de noix hachées non salées, de graines de chanvre, de graines  de chia ou de flocons de noix de coco non sucrés. ",
+      "Les enfants  peuvent aider à mélanger les ingrédients et façonner les boules de 1 pouce. ",
+      "Faites  preuve de créativité! Amusez-vous à faire différentes formes, par exemple des  cœurs, un bonhomme de neige, des étoiles, des visages souriants, etc. ",
+      "Si le  mélange est trop sec, ajoutez du beurre de noix. Si le mélange est trop humide,  ajoutez des flocons d’avoine. ",
+      "Conservez  le surplus jusqu’à 7 jours au  réfrigérateur et jusqu’à 3 mois au  congélateur. "
+    ],
+    "cuisson": "0",
+    "portion": "18",
+    "temps": "10",
+    "Catégories": [
+      " végétarien",
+      " pour enfants",
+      " sans cuisson",
+      " congelable"
+    ]
+  },
+  {
+    "titre": "Muffins au yogourt sans farine au mélangeur",
+    "type": "Collations",
+    "description": "Les muffins au mélangeur sont les meilleurs - mettez tous les ingrédients dans le mélangeur et c'est presque tout! Prenez-en un au déjeuner ou à la collation.",
+    "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/Flourless-strawberry-yogurt-blender-muffins.jpg",
+    "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/muffins-yogourt-sans-farine.html",
+    "ingrédients": [
+      {
+        "ingrédient": "250 ml (1  tasse) de yogourt grec nature 0 % M.G. ",
+        "valeur": "250"
+      },
+      {
+        "ingrédient": "2 bananes  mûres (environ 250 ml/1 tasse)",
+        "valeur": "2"
+      },
+      {
+        "ingrédient": "2 œufs ",
+        "valeur": "2"
+      },
+      {
+        "ingrédient": "30 ml (2 c.  à table) d’huile végétale  ",
+        "valeur": "30"
+      },
+      {
+        "ingrédient": "500 ml (2  tasses) de flocons d’avoine",
+        "valeur": "500"
+      },
+      {
+        "ingrédient": "75 ml (⅓  tasse) de sirop d’érable ",
+        "valeur": "75"
+      },
+      {
+        "ingrédient": "7 ml (½ c.  à table) de poudre à pâte ",
+        "valeur": "7"
+      },
+      {
+        "ingrédient": "2 ml (½ c.  à thé) de bicarbonate de soude",
+        "valeur": "2"
+      },
+      {
+        "ingrédient": "5 ml (1 c.  à thé) de vanille",
+        "valeur": "5"
+      },
+      {
+        "ingrédient": "250 ml (1  tasse) de petits fruits mélangés frais ou surgelés ",
+        "valeur": "250"
+      }
+    ],
+    "préparation": [
+      "Les enfants  seront ravis de vous aider avec cette recette. Les petits chefs peuvent aider à  rajouter les ingrédients dans le mélangeur ou robot culinaire. Ils peuvent  aussi verser le mélange dans les moules à muffins. ",
+      "Ajoutez un peu de croquant: incorporez 60  ml (¼ tasse) de noix non salées hachées au mélange à l’étape 3.",
+      "Si vous  aimez le goût de la cannelle, ajoutez-en une pincée à l’étape 2. ",
+      "Doublez  de la recette et gardez quelques muffins pour  plus tard. Laissez les muffins refroidir, puis  conservez-les dans un récipient avec couvercle hermétique jusqu’à 7 jours au  réfrigérateur ou jusqu’à 2 à 3 mois au  congélateur. Réchauffez-les au four à micro-ondes avant de servir."
+    ],
+    "truc": [
+      "Les enfants  seront ravis de vous aider avec cette recette. Les petits chefs peuvent aider à  rajouter les ingrédients dans le mélangeur ou robot culinaire. Ils peuvent  aussi verser le mélange dans les moules à muffins. ",
+      "Ajoutez un peu de croquant: incorporez 60  ml (¼ tasse) de noix non salées hachées au mélange à l’étape 3.",
+      "Si vous  aimez le goût de la cannelle, ajoutez-en une pincée à l’étape 2. ",
+      "Doublez  de la recette et gardez quelques muffins pour  plus tard. Laissez les muffins refroidir, puis  conservez-les dans un récipient avec couvercle hermétique jusqu’à 7 jours au  réfrigérateur ou jusqu’à 2 à 3 mois au  congélateur. Réchauffez-les au four à micro-ondes avant de servir.\n"
+    ],
+    "cuisson": "17",
+    "portion": "12",
+    "temps": "10",
+    "Catégories": [
+      " végétarien",
+      " pour enfants",
+      " congelable",
+      " 30 minutes ou moins   "
+    ]
+  },
+  {
     "titre": "Amusante salade de fruits",
     "type": "Collations",
-    "description": "Cette salade de fruits savoureuse satisfera à coup sûr votre dent sucrée et constitue un excellent dessert ou collation santé. ",
+    "description": "Cette salade de fruits savoureuse satisfera à coup sûr votre dent sucrée et constitue un excellent dessert ou collation santé.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/fruit-salad-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/salade-fruits.html",
     "ingrédients": [
@@ -4285,7 +4584,7 @@
     ]
   },
   {
-    "titre": "Croquant aux pommes et aux bleuets ",
+    "titre": "Croquant aux pommes et aux bleuets",
     "type": "Collations",
     "description": "Les pommes et les bleuets sont les vedettes de cette irrésistible recette. Dégustez le croquant chaud seul ou accompagnez-le d'une petite cuillerée de yogourt. Parfait comme dessert ou comme collation avec un verre de lait ou de boisson de soya enrichie.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/apple-berry-cri-80x80.jpg",
@@ -4685,7 +4984,7 @@
   {
     "titre": "Barres granolas à l'avoine grillée sans cuisson",
     "type": "Collations",
-    "description": "Le goût sucré naturel des dates et l’avoine grillée rehaussent la saveur de ces barres granola.",
+    "description": "Le goût sucré naturel des dates et l'avoine grillée rehaussent la saveur de ces barres granola.",
     "image": "https://www.canada.ca//content/dam/hc-sc/images/services/tips-healthy-eating/eat-well-recipes/barre-granola-bars-80x80.jpg",
     "link": "https://www.canada.ca//fr/sante-canada/services/guide-alimentaire-canadien/conseils-alimentation-saine/planification-repas-cuisine-choix-sante/recettes/barres-granolas-avoine-grillee-sans-cuisson.html",
     "ingrédients": [

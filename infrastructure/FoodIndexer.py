@@ -61,10 +61,10 @@ class FoodIndexer:
         bulk_size = 1000
 
         # Create index
-        #print(f"Deleting index '{index_name}'...")
-        #elastic_client.indices.delete(index=index_name, ignore=[400, 404])
-        #print(f"Creating index '{index_name}'...")
-        #elastic_client.indices.create(index=index_name, ignore=400)
+        print(f"Deleting index '{index_name}'...")
+        elastic_client.indices.delete(index=index_name, ignore=[400, 404])
+        print(f"Creating index '{index_name}'...")
+        elastic_client.indices.create(index=index_name, ignore=400)
 
         # Prepare actions to be executed by the bulk helper
         print("Generating data...")
@@ -98,37 +98,6 @@ class FoodIndexer:
         r = elastic_client.search(index=index_name)
         print(dumps(r['hits']['hits'][0], indent=2))
         """
-
-        def index_documents(self, json_list, elastic_client, index_name):
-            # Variables
-            bulk_size = 1000
-
-            # Create index
-            # print(f"Deleting index '{index_name}'...")
-            # elastic_client.indices.delete(index=index_name, ignore=[400, 404])
-            # print(f"Creating index '{index_name}'...")
-            # elastic_client.indices.create(index=index_name, ignore=400)
-
-            # Prepare actions to be executed by the bulk helper
-            print("Generating data...")
-            data = self.generate_data(json_list, index_name)
-
-            # Send data
-            print("Sending...")
-            cpt = 0
-            for chunk in self.chunks(data, bulk_size):
-                try:
-                    print(f"Bulk {cpt + 1}: size {bulk_size}")
-                    res = helpers.bulk(elastic_client, chunk,
-                                       chunk_size=bulk_size,
-                                       request_timeout=120)
-                    # assert res[0] == bulk_size --------------------------------------------------
-                except Exception as e:
-                    print("ERROR:", e)
-                cpt += 1
-
-            # wait a bit
-            sleep(2)
 
     def index_generator_data(self, data_generator, elastic_client, index_name):
         # Variables

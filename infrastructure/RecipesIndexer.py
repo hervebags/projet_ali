@@ -21,6 +21,7 @@ def generate_data(json_list, index: str):
                     "_source": doc
                 }
 
+
 def index_documents_gac(elastic_client, index_name):
     data_json = None
     with open('data.txt', encoding='utf8') as json_file:

@@ -17,7 +17,7 @@ def make_recommendations(foods_and_nutrients_in_reference_proportion):
 
     :return:
     """
-    fiber_scores = FoodScorer.compute_fiber_scores(foods_and_nutrients_in_reference_proportion)
+    fiber_scores = FoodScorer.compute_all_fiber_scores(foods_and_nutrients_in_reference_proportion)
     sugar_scores = FoodScorer.compute_sugar_scores(foods_and_nutrients_in_reference_proportion)
     global_scores = FoodScorer.compute_global_score(fiber_scores, sugar_scores)
 
@@ -115,3 +115,6 @@ def display_recommendation_graph():
 #     :return:
 #     """
 #     pass
+
+def recommend_food_for_a_gac_recipe(ingredients):
+    pass

@@ -25,7 +25,34 @@ def compute_fiber_score(fiber_value_in_gram):
     return fiber_score
 
 
-def compute_fiber_scores(foods_and_nutrients_in_reference_proportion):
+def compute_fiber_score(food_and_nutrients_in_reference_proportion):
+    """
+    Calculer la pente de la droite de régression linéaire.
+    Calculer l’ordonnée à l’origine d’une droite de régression linéaire.
+
+    :return:
+    """
+    x = [2, 6]
+    y = [0.5, 0.9]
+    x_y_lin_regression = linregress(x, y)
+    slope = x_y_lin_regression.slope
+    intercept = x_y_lin_regression.intercept
+
+    for nutrient_index, nutrient in enumerate(food_and_nutrients_in_reference_proportion['nutrients_nested_aggregation']['nutrient_names']['buckets']):
+        if 'FIBRES ALIMENTAIRES TOTALES' in nutrient.values():
+            fiber_value = nutrient.get('Total_nutrients_values').get('value')
+    if (slope * fiber_value + intercept) > 1:
+        fiber_score = 1
+    else:
+        if (slope * fiber_value + intercept) < 0:
+            fiber_score = 0
+        else:
+            fiber_score = slope * fiber_value + intercept
+
+    return fiber_score
+
+
+def compute_all_fiber_scores(foods_and_nutrients_in_reference_proportion):
     """
     Calculer la pente de la droite de régression linéaire.
     Calculer l’ordonnée à l’origine d’une droite de régression linéaire.
