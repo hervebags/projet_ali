@@ -187,7 +187,7 @@ def prepare_query_body_for_all_scores():
 
               double fiber_score = 0;
               if (!doc.containsKey('nutrients2.nu291') || doc['nutrients2.nu291'].empty) {
-                return -1;
+                return 0;
               } else {
                 double fiber_value = doc['nutrients2.nu291'].value;
                 if ((slope * fiber_value + intercept) > 1) {
@@ -219,7 +219,7 @@ def prepare_query_body_for_all_scores():
 
               double sugar_score = 0;
               if (!doc.containsKey('nutrients2.nu269') || doc['nutrients2.nu269'].empty) {
-                return -1;
+                return 0;
               } else {
                 double sugar_value = doc['nutrients2.nu269'].value;
                 if ((slope * sugar_value + intercept) > 1) {
@@ -260,7 +260,7 @@ def prepare_query_body_for_all_scores():
 
               float intercept = y_avg - slope * x_avg;
               if (!doc.containsKey('nutrients2.nu291') || doc['nutrients2.nu291'].empty) {
-                return null;
+                return 0;
               } else {
                 double fiber_value = doc['nutrients2.nu291'].value;
                 if ((slope * fiber_value + intercept) > 1) {
@@ -297,7 +297,7 @@ def prepare_query_body_for_all_scores():
               float intercept = y_avg - slope * x_avg;
 
               if (!doc.containsKey('nutrients2.nu269') || doc['nutrients2.nu269'].empty) {
-                return null;
+                return 0;
               } else {
                 double sugar_value = doc['nutrients2.nu269'].value;
                 if ((slope * sugar_value + intercept) > 1) {
@@ -329,7 +329,7 @@ def prepare_query_body_for_gag():
     return query_body
 
 
-def prepare_query_body_for_gag_ingredients(food_description=""):
+def prepare_query_body_for_gac_ingredients(food_description=""):
     query_body = {
         "query": {
             "match": {
@@ -363,7 +363,7 @@ def prepare_query_body_for_gag_ingredients(food_description=""):
 
                   float intercept = y_avg - slope * x_avg;
                   if (!doc.containsKey('nutrients2.nu291') || doc['nutrients2.nu291'].empty) {
-                    return null;
+                    return 0;
                   } else {
                     double fiber_value = doc['nutrients2.nu291'].value;
                     if ((slope * fiber_value + intercept) > 1) {
@@ -400,7 +400,7 @@ def prepare_query_body_for_gag_ingredients(food_description=""):
                   float intercept = y_avg - slope * x_avg;
 
                   if (!doc.containsKey('nutrients2.nu269') || doc['nutrients2.nu269'].empty) {
-                    return null;
+                    return 0;
                   } else {
                     double sugar_value = doc['nutrients2.nu269'].value;
                     if ((slope * sugar_value + intercept) > 1) {
@@ -437,7 +437,7 @@ def prepare_query_body_for_gag_ingredients(food_description=""):
 
                   double fiber_score = 0;
                   if (!doc.containsKey('nutrients2.nu291') || doc['nutrients2.nu291'].empty) {
-                    return -1;
+                    return 0;
                   } else {
                     double fiber_value = doc['nutrients2.nu291'].value;
                     if ((slope * fiber_value + intercept) > 1) {
@@ -469,7 +469,7 @@ def prepare_query_body_for_gag_ingredients(food_description=""):
 
                   double sugar_score = 0;
                   if (!doc.containsKey('nutrients2.nu269') || doc['nutrients2.nu269'].empty) {
-                    return -1;
+                    return 0;
                   } else {
                     double sugar_value = doc['nutrients2.nu269'].value;
                     if ((slope * sugar_value + intercept) > 1) {
@@ -564,31 +564,34 @@ def fetch_gac_data(elastic_client, index="gac", size=10):
     return res
 
 
-def fetch_matching_foods_for_ingredients(elastic_client, ingredients, index="foods_enriched", size=10):
-    for ingredient in ingredients:
-        query_body = prepare_query_body_for_gag_ingredients(ingredient['ingrédient'])
-        res = elastic_client.search(index=index,
-                                    body=query_body, size=size,
-                                    track_total_hits=True)
+def fetch_matching_foods_for_recipes(elastic_client, gac_recipes, index="foods_enriched", size=10):
+    recommendations_for_all_recipes = list()
+    for recipe in gac_recipes:
+        ingredients = recipe['_source']['ingrédients']
 
-        print("Ingrédient: " + ingredient['ingrédient'])
-        print("-------------------------- Matching food: --------------------------------")
-        for food in res['hits']['hits']:
-            print(food['_source']['food_description'])
-            if food['fields']['fiber_score'][0] is not None:
-                print("Fiber score = " + str(food['fields']['fiber_score'][0]))
-            if food['fields']['sugar_score'][0] is not None:
-                print("Sugar score = " + str(food['fields']['sugar_score'][0]))
-            if food['fields']['global_score'][0] != -1:
-                print("Global score = " + str(food['fields']['global_score'][0]))
-            else:
-                print("Pas de score global")
-            print()
-        print("\n\n")
+        recommendations_for_all_ingredients = list()
+        for ingredient in ingredients:
+            query_body = prepare_query_body_for_gac_ingredients(ingredient['ingrédient'])
+            res = elastic_client.search(index=index,
+                                        body=query_body, size=size,
+                                        track_total_hits=True)
+
+            recommendations_for_one_ingredient = list()
+            for food in res['hits']['hits']:
+                recommendation = dict()
+                recommendation['food_description'] = food['_source']['food_description']
+                recommendation['fiber_score'] = food['fields']['fiber_score'][0]
+                recommendation['sugar_score'] = food['fields']['sugar_score'][0]
+                recommendation['global_score'] = food['fields']['global_score'][0]
+                recommendations_for_one_ingredient.append(recommendation)
+            recommendations_for_all_ingredients.append(recommendations_for_one_ingredient)
+        recommendations_for_all_recipes.append(recommendations_for_all_ingredients)
+
+    return recommendations_for_all_recipes
 
 
 def fetch_matching_foods_for_ingredient(elastic_client, ingredient, index="foods_enriched", size=10):
-    query_body = prepare_query_body_for_gag_ingredients(ingredient['ingrédient'])
+    query_body = prepare_query_body_for_gac_ingredients(ingredient['ingrédient'])
     res = elastic_client.search(index=index,
                                 body=query_body, size=size,
                                 track_total_hits=True)

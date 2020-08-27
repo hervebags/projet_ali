@@ -22,7 +22,7 @@ def enrich_recipes_data_with_nutrient_values(recipes_json, elastic_client):
             }
         ]
     }
-    pipeline_id = str(uuid4())
-    res_pipeline = elastic_client.put_pipeline(id, body)
+    # pipeline_id = str(uuid4())
+    # res_pipeline = elastic_client.put_pipeline(id, body)
 
     # elastic_client.update_by_query(index="gac", pipeline=pipeline_id)

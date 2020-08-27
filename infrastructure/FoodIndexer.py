@@ -50,6 +50,20 @@ class FoodIndexer:
                     "_source": doc
                 }
 
+    def generate_data_for_gac_fcen_matcher(self, recipes_jsons, recommendations_for_recipes, index: str):
+        for doc,recommendations_for_one_recipe in zip(recipes_jsons, recommendations_for_recipes):
+            id = str(uuid4())
+
+            for recommendation, (key, ingredient) in zip(recommendations_for_one_recipe, enumerate(doc['_source']['ingrédients'])):
+                doc['_source']['ingrédients'][key].update({'recommendations': recommendation})
+
+            if '{"index"' not in doc:
+                yield {
+                    "_index": index,
+                    "_id": id,
+                    "_source": doc
+                }
+
     # pre-slice generator by chunks
     def chunks(self, iterable, chunk_size: int = 10): # ----------------------------------------------------------------
         iterator = iter(iterable)
@@ -125,6 +139,38 @@ class FoodIndexer:
         # wait a bit
         sleep(2)
 
+    def index_gac_with_recommended_foods(self, recipes_jsons, recommendations_for_recipes, elastic_client, index_name):
+        # Variables
+        bulk_size = 1
+
+        # Create index
+        print(f"Deleting index '{index_name}'...")
+        elastic_client.indices.delete(index=index_name, ignore=[400, 404])
+        print(f"Creating index '{index_name}'...")
+        elastic_client.indices.create(index=index_name, ignore=400)
+
+        # Prepare actions to be executed by the bulk helper
+        print("Generating data...")
+        data = self.generate_data_for_gac_fcen_matcher(recipes_jsons=recipes_jsons,
+                                                       recommendations_for_recipes=recommendations_for_recipes,
+                                                       index=index_name)
+
+        # Send data
+        print("Sending...")
+        cpt = 0
+        for chunk in self.chunks(data, bulk_size):
+            try:
+                print(f"Bulk {cpt + 1}: size {bulk_size}")
+                res = helpers.bulk(elastic_client, chunk,
+                                   chunk_size=bulk_size,
+                                   request_timeout=120)
+                #assert res[0] == bulk_size --------------------------------------------------
+            except Exception as e:
+                print("ERROR:", e)
+            cpt += 1
+
+        # wait a bit
+        sleep(2)
 
     def test_indexing(self, foods_with_nutrients_amounts, elastic_client):
         bulk_size = 10

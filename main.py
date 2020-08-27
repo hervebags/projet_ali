@@ -18,7 +18,7 @@ import domaine.FoodRecommender as FoodRecommender
 from domaine.FoodRecommender import recommend_food_for_a_gac_recipe
 
 from infrastructure.ElasticDataFetcher import fetch_sorted_sugar_scores, fetch_all_scores, fetch_gac_data, \
-    fetch_matching_foods_for_ingredients, fetch_matching_foods_for_ingredient
+    fetch_matching_foods_for_recipes, fetch_matching_foods_for_ingredient
 
 """ NB: You must start ElasticSearch before using this code """
 
@@ -158,18 +158,23 @@ if __name__ == "__main__":
     display_all_scores(0, 20)
 
     # Fetch one instance GAC data
-    gac_recipes = fetch_gac_data(elastic_client_local, index="gac", size=15)
-    ingredients = gac_recipes['hits']['hits'][0]['_source']['ingrédients']
-    fetch_matching_foods_for_ingredients(elastic_client_local, ingredients, index="foods_enriched", size=3)
+    gac_recipes = fetch_gac_data(elastic_client_local, index="gac", size=3)
+    gac_recipes = gac_recipes['hits']['hits']
+    # ingredients = gac_recipes['hits']['hits'][0]['_source']['ingrédients']
+    recommendations_for_recipes = fetch_matching_foods_for_recipes(elastic_client_local,
+                                                       gac_recipes,
+                                                       index="foods_enriched",
+                                                       size=2)
 
     # Get GAC data from file
     with open('data.txt', encoding='utf8') as json_file:
         recipes_json = json.load(json_file)
 
-    matching_food = fetch_matching_foods_for_ingredient(elastic_client_local,
-                                                        ingredients[0],
-                                                        index="foods_enriched",
-                                                        size=3)
+    foodIndexer.index_gac_with_recommended_foods(gac_recipes,
+                                                 recommendations_for_recipes,
+                                                 elastic_client_local,
+                                                 index_name="gac_with_recommendations")
+
 
     # # input(ingredient)
     # body = {
