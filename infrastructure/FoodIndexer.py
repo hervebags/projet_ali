@@ -11,8 +11,164 @@ import infrastructure.ElasticDomain as elastic_domain
 import os, uuid
 
 
-# res = requests.get('http://localhost:9200')
-# print(res.content)
+def prepare_index_creation_body_for_gac_fcen_integration():
+    mapping = {
+        "settings": {
+            "number_of_shards": 1,
+            "number_of_replicas": 1
+        },
+        "mappings": {
+            "properties": {
+                "Catégories": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "cuisson": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "description": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "image": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "ingrédients": {
+                    "type": "nested",
+                    "properties": {
+                        "ingrédient": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        },
+                        "recommendations": {
+                            "type": "nested",
+                            "properties": {
+                                "fiber_score": {
+                                    "type": "long"
+                                },
+                                "food_description": {
+                                    "type": "text",
+                                    "fields": {
+                                        "keyword": {
+                                            "type": "keyword",
+                                            "ignore_above": 256
+                                        }
+                                    }
+                                },
+                                "global_score": {
+                                    "type": "long"
+                                },
+                                "sugar_score": {
+                                    "type": "float"
+                                }
+                            }
+                        },
+                        "valeur": {
+                            "type": "text",
+                            "fields": {
+                                "keyword": {
+                                    "type": "keyword",
+                                    "ignore_above": 256
+                                }
+                            }
+                        }
+                    }
+                },
+                "link": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "portion": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "préparation": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "temps": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "titre": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "truc": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "type": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return mapping
 
 
 class FoodIndexer:
@@ -52,10 +208,15 @@ class FoodIndexer:
 
     def generate_data_for_gac_fcen_matcher(self, recipes_jsons, recommendations_for_recipes, index: str):
         for doc,recommendations_for_one_recipe in zip(recipes_jsons, recommendations_for_recipes):
+            doc.pop('_index')
+            doc.pop('_type')
+            doc.pop('_id')
+            doc.pop('_score')
+            doc = doc['_source']
             id = str(uuid4())
 
-            for recommendation, (key, ingredient) in zip(recommendations_for_one_recipe, enumerate(doc['_source']['ingrédients'])):
-                doc['_source']['ingrédients'][key].update({'recommendations': recommendation})
+            for recommendation, (key, ingredient) in zip(recommendations_for_one_recipe, enumerate(doc['ingrédients'])):
+                doc['ingrédients'][key].update({'recommendations': recommendation})
 
             if '{"index"' not in doc:
                 yield {
@@ -141,13 +302,17 @@ class FoodIndexer:
 
     def index_gac_with_recommended_foods(self, recipes_jsons, recommendations_for_recipes, elastic_client, index_name):
         # Variables
-        bulk_size = 1
+        bulk_size = 10
 
         # Create index
         print(f"Deleting index '{index_name}'...")
         elastic_client.indices.delete(index=index_name, ignore=[400, 404])
         print(f"Creating index '{index_name}'...")
-        elastic_client.indices.create(index=index_name, ignore=400)
+        index_creation_body = prepare_index_creation_body_for_gac_fcen_integration()
+        index_creation_response = elastic_client.indices.create(index=index_name, body=index_creation_body,ignore=400)
+        if 'acknowledged' in index_creation_response:
+            if index_creation_response['acknowledged']:
+                print("INDEX MAPPING SUCCESS FOR INDEX:", index_creation_response['index'])
 
         # Prepare actions to be executed by the bulk helper
         print("Generating data...")

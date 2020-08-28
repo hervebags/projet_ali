@@ -342,6 +342,81 @@ def prepare_query_body_for_gac_ingredients(food_description=""):
                 "food_description"
             ]
         },
+        "sort": {
+            "_script": {
+                "type": "number",
+                "script": {
+                    "lang": "painless",
+                    "source": """
+                  float [] x_values = new float[]{2.0F, 6.0F};
+                  float [] y_values = new float[]{0.5F, 0.9F};
+
+                  float x_avg = (x_values[0] + x_values[1]) / 2;
+                  float y_avg = (y_values[0] + y_values[1]) / 2;
+
+                  float slope_numerator = 0;
+                  float slope_denominator = 0;
+                  for(int i=0; i<2; i++){
+                    slope_numerator += (x_values[i] - x_avg) * (y_values[i] - y_avg);
+                    slope_denominator += Math.pow((x_values[i] - x_avg), 2);
+                  }
+                  float slope = slope_numerator / slope_denominator;
+                  float intercept = y_avg - slope * x_avg;
+
+                  double fiber_score = 0;
+                  if (!doc.containsKey('nutrients2.nu291') || doc['nutrients2.nu291'].empty) {
+                    return 0;
+                  } else {
+                    double fiber_value = doc['nutrients2.nu291'].value;
+                    if ((slope * fiber_value + intercept) > 1) {
+                      fiber_score = 1;
+                    } else {
+                      if ((slope * fiber_value + intercept) < 0) {
+                        fiber_score =  0;
+                      } else {
+                        fiber_score = slope * fiber_value + intercept;
+                      }
+                    }
+
+
+                  x_values = new float[]{8.0F, 10.0F};
+                  y_values = new float[]{0.9F, 0.8F};
+
+                  x_avg = (x_values[0] + x_values[1]) / 2;
+                  y_avg = (y_values[0] + y_values[1]) / 2;
+
+                  slope_numerator = 0;
+                  slope_denominator = 0;
+                  for(int i=0; i<2; i++){
+                    slope_numerator += (x_values[i] - x_avg) * (y_values[i] - y_avg);
+                    slope_denominator += Math.pow((x_values[i] - x_avg), 2);
+                  }
+                  slope = slope_numerator / slope_denominator;
+
+                  intercept = y_avg - slope * x_avg;
+
+                  double sugar_score = 0;
+                  if (!doc.containsKey('nutrients2.nu269') || doc['nutrients2.nu269'].empty) {
+                    return 0;
+                  } else {
+                    double sugar_value = doc['nutrients2.nu269'].value;
+                    if ((slope * sugar_value + intercept) > 1) {
+                      sugar_score = 1;
+                    } else {
+                      if ((slope * sugar_value + intercept) < 0) {
+                        sugar_score =  0;
+                      } else {
+                        sugar_score =  slope * sugar_value + intercept;
+                      }
+                    }
+                  }
+                    return (fiber_score * 0.5 + sugar_score* 0.5);
+                  }
+              """
+                },
+                "order": "desc"
+            }
+        },
         "script_fields": {
             "fiber_score": {
                 "script": {
@@ -493,6 +568,18 @@ def prepare_query_body_for_gac_ingredients(food_description=""):
     return query_body
 
 
+def prepare_query_body_for_fetching_a_recipe_with_its_recommendations(recipe_name):
+    query_body = {
+        "query": {
+            "match": {
+                "titre.keyword": recipe_name
+            }
+        }
+    }
+
+    return query_body
+
+
 def fetch_main_nutrients_and_their_values(elastic_client, query_field_name, query_field_path, index="foods_enriched",
                                           query_string="céréale", number_of_items_to_return=5):
     """
@@ -612,3 +699,14 @@ def fetch_matching_foods_for_ingredient(elastic_client, ingredient, index="foods
     # print("\n\n")
 
     return res['hits']['hits']
+
+
+def fetch_a_recipe_with_its_recommendations(elastic_client, recipe_name, index="gac_with_recommendations", size=1):
+    query_body = prepare_query_body_for_fetching_a_recipe_with_its_recommendations(recipe_name)
+    res = elastic_client.search(index=index,
+                                body=query_body, filter_path=['hits.hits._source.ingrédients.ingrédient',
+                                                              'hits.hits._source.ingrédients.recommendations'
+                                                              ],
+                                size=size)
+
+    return res

@@ -16,9 +16,10 @@ import infrastructure.ElasticDataFetcher as ElasticDataFetcher
 import domaine.NutrientPortionConverter as NutrientPortionConverter
 import domaine.FoodRecommender as FoodRecommender
 from domaine.FoodRecommender import recommend_food_for_a_gac_recipe
+from domaine.recipeSuggester import suggest_the_best_combination_for_recipe_using_fcen
 
 from infrastructure.ElasticDataFetcher import fetch_sorted_sugar_scores, fetch_all_scores, fetch_gac_data, \
-    fetch_matching_foods_for_recipes, fetch_matching_foods_for_ingredient
+    fetch_matching_foods_for_recipes, fetch_matching_foods_for_ingredient, fetch_a_recipe_with_its_recommendations
 
 """ NB: You must start ElasticSearch before using this code """
 
@@ -158,22 +159,36 @@ if __name__ == "__main__":
     display_all_scores(0, 20)
 
     # Fetch one instance GAC data
-    gac_recipes = fetch_gac_data(elastic_client_local, index="gac", size=3)
+    gac_recipes = fetch_gac_data(elastic_client_local, index="gac", size=80)
     gac_recipes = gac_recipes['hits']['hits']
     # ingredients = gac_recipes['hits']['hits'][0]['_source']['ingrédients']
     recommendations_for_recipes = fetch_matching_foods_for_recipes(elastic_client_local,
-                                                       gac_recipes,
-                                                       index="foods_enriched",
-                                                       size=2)
+                                                                   gac_recipes,
+                                                                   index="foods_enriched",
+                                                                   size=10)
 
-    # Get GAC data from file
-    with open('data.txt', encoding='utf8') as json_file:
-        recipes_json = json.load(json_file)
+    # Index recipes with recommended foods/aliments
+    # foodIndexer.index_gac_with_recommended_foods(gac_recipes,
+    #                                              recommendations_for_recipes,
+    #                                              elastic_client_local,
+    #                                              index_name="gac_with_recommendations")
 
-    foodIndexer.index_gac_with_recommended_foods(gac_recipes,
-                                                 recommendations_for_recipes,
-                                                 elastic_client_local,
-                                                 index_name="gac_with_recommendations")
+    # Make a recipe with fcen
+    # all_gac_recipes_with_recommendations = fetch_recipes_with_recommendations()
+    # one_gac_recipe_with_recommendations = all_gac_recipes_with_recommendations[0]
+    # "Gruau tarte aux pommes"
+    # "Chocolat chaud, cacao, à haute teneur en matière grasse ou déjeuner, nature, mélange sec"
+    # "Céréale, prête-à-manger, Fibre 1, General Mills"
+    # "Grignotises, maïs soufflé, saveur de fromage"
+    # (elastic_client_local,"Gruau classique préparé la veille",index="gac_with_recommendations")
+    a_gac_recipe_with_its_recommendations =\
+        fetch_a_recipe_with_its_recommendations(elastic_client_local,
+                                                recipe_name="Gruau tarte aux pommes",
+                                                index="gac_with_recommendations")
+    # suggest_the_best_combination_for_recipe_using_fcen(a_gac_recipe_with_its_recommendations) # ----------------------------
+
+
+
 
 
     # # input(ingredient)
