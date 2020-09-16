@@ -168,10 +168,12 @@ if __name__ == "__main__":
                                                                    size=10)
 
     # Index recipes with recommended foods/aliments
-    # foodIndexer.index_gac_with_recommended_foods(gac_recipes,
-    #                                              recommendations_for_recipes,
-    #                                              elastic_client_local,
-    #                                              index_name="gac_with_recommendations")
+    """
+    foodIndexer.index_gac_with_recommended_foods(gac_recipes,
+                                                 recommendations_for_recipes,
+                                                 elastic_client_local,
+                                                 index_name="gac_with_recommendations")
+    """
 
     # Make a recipe with fcen
     # all_gac_recipes_with_recommendations = fetch_recipes_with_recommendations()
